@@ -20,12 +20,14 @@ def create_gpencil_material(gpencil_obj_name=None,material_name=None,fill_color=
     gpencil.data.materials.append(gp_mat)        
     return gp_mat
 
-def index_of_material(gpencil_obj_name=None,material_name=None):
-    if gpencil_obj_name not in bpy.context.scene.objects:
+def index_of_material(gpencil_obj_name=None,gp_object=None,material_name=None):
+    if gp_object is None and gpencil_obj_name not in bpy.context.scene.objects:
         raise Exception("no gpencil object named of "+gpencil_obj_name)
 
-    gpencil = bpy.context.scene.objects[gpencil_obj_name]
-    return gpencil.data.materials.find(material_name)
+    if(gp_object is None):
+        gp_object = bpy.context.scene.objects[gpencil_obj_name]
+        
+    return gp_object.data.materials.find(material_name)
 
 
 def get_material(material_name=None):
