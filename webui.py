@@ -143,6 +143,7 @@ def change_vs_name_input(vs_id, history):
         return gr.update(visible=True), gr.update(visible=True), gr.update(visible=False), None, history
     else:
         file_status = f"已加载知识库{vs_id}，请开始提问"
+        print(VS_ROOT_PATH)
         return gr.update(visible=False), gr.update(visible=False), gr.update(visible=True), os.path.join(VS_ROOT_PATH,
                                                                                                          vs_id), history + [
                    [None, file_status]]
